@@ -135,7 +135,7 @@ async def upload_and_compress_image(file: UploadFile = File(...)):
         
         compressed_content, compressed_size = await asyncio.to_thread(compress_image, content)
         if original_size > 0:
-        compression_ratio = round(compressed_size / original_size, 4)
+            compression_ratio = round(compressed_size / original_size, 4)
         
         # Save to history
         record = add_history_record(
@@ -151,7 +151,7 @@ async def upload_and_compress_image(file: UploadFile = File(...)):
     except HTTPException as e:
         # Record failure
         add_history_record(
-            filename=filename
+            filename=filename,
             original_size=0,
             compressed_size=0,
             compression_ratio=0,
